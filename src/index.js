@@ -12,7 +12,7 @@ import {
   PAUSE,
   PERSIST,
   REHYDRATE,
-  PURGE,s
+  PURGE,
   REGISTER,
 } from "redux-persist";
 
@@ -23,13 +23,12 @@ const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => {
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoreActions: [FLUSH, PAUSE, PERSIST, REHYDRATE, PURGE, REGISTER],
       },
-    });
-  },
+    }),
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
